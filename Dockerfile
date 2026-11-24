@@ -22,6 +22,7 @@ ENV PYTHONUNBUFFERED 1
 RUN python -m pip install --no-cache-dir pip==22.0.4
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --no-cache-dir gunicorn
 
 
 # copy project
