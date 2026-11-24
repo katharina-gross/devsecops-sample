@@ -70,10 +70,11 @@ jobs:
       - name: Deploy PyGoat
         run: |
           docker run -d --name pygoat \
-            -p 8000:8000 pygoat-local:latest
-
-      - name: Run database migrations
-        run: docker exec -w /app pygoat python manage.py migrate
+            -p 8000:8000 \
+            --entrypoint /bin/sh \
+            -w /app \
+            pygoat-local:latest \
+            -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
       - name: Wait for application
         run: |
