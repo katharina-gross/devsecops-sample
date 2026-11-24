@@ -73,7 +73,7 @@ jobs:
             -p 8000:8000 pygoat-local:latest
 
       - name: Run database migrations
-        run: docker exec pygoat python manage.py migrate
+        run: docker exec -w /app pygoat python manage.py migrate
 
       - name: Wait for application
         run: |
